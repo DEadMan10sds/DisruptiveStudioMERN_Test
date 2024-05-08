@@ -1,7 +1,6 @@
 import UserController from "../controllers/User.js";
 import validateFields from "../middlewares/validateFields.js";
 import validateJWT from "../middlewares/validateJWT.js";
-import { validateRoles } from "../middlewares/validateRoles.js";
 
 const UserRouter = [
   {

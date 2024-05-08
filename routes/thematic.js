@@ -2,6 +2,7 @@ import ThematicController from "../controllers/Thematic.js";
 import validateFields from "../middlewares/validateFields.js";
 import validateJWT from "../middlewares/validateJWT.js";
 import { isAdmin } from "../middlewares/validateRoles.js";
+import { validateRoles } from "../middlewares/validateRoles.js";
 
 const thematicRouter = [
   {
