@@ -1,3 +1,4 @@
+import generateJWT from "../helpers/createJWT.js";
 import User from "../models/User.js";
 
 const UserController = {
@@ -31,6 +32,29 @@ const UserController = {
       return res.status(200).json({
         message: "User finded",
         data: findedUser,
+      });
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  },
+
+  login: async (req, res) => {
+    const data = req.body;
+
+    try {
+      const existsUser = await User.find({ email: data.email });
+
+      if (!existsUser)
+        return res.status(400).json({
+          message: "Review the user login data",
+        });
+
+      const token = await generateJWT(existsUser[0].id);
+
+      return res.status(200).json({
+        message: "Log in succesfully",
+        user: existsUser,
+        token,
       });
     } catch (error) {
       return res.status(400).json(error);

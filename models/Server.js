@@ -44,7 +44,8 @@ export class Server {
         createParentPath: true,
       })
     );
-    this.app.use("/", express.static(path.resolve(__dirname, "../public")));
+    //this.app.use("/", express.static(path.resolve(__dirname, "../public")));
+    this.app.use(express.static("public"));
   }
 
   routes() {

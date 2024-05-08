@@ -3,11 +3,11 @@ import { Schema, model } from "mongoose";
 const MultimediaScheme = Schema({
   author: {
     type: Schema.Types.ObjectId,
-    require: true,
+    required: true,
   },
   thematic: {
     type: Schema.Types.ObjectId,
-    require: true,
+    required: true,
   },
   content: {
     url: {
@@ -16,6 +16,9 @@ const MultimediaScheme = Schema({
     public_id: {
       type: String,
     },
+  },
+  text: {
+    type: String,
   },
 });
 

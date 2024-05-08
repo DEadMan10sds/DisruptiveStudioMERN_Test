@@ -86,6 +86,63 @@ const MultimediaController = {
       return res.status(400).json(error);
     }
   },
+
+  update: async (req, res) => {
+    const { id } = req.params;
+    let { data } = req.body;
+    data = JSON.parse(data);
+    try {
+      const updatedMedia = await Multimedia.findByIdAndUpdate(id, data);
+
+      if (req.files) {
+        const mediaUrl = await cloudinary.v2.uploader.upload(
+          req.files["img"].tempFilePath,
+          {
+            public_id: updatedMedia.content.public_id,
+          }
+        );
+      }
+
+      if (!updatedMedia)
+        return res.status(400).json({
+          message: "Media not updated",
+          data: updatedMedia,
+        });
+
+      return res.status(200).json({
+        message: "Media updated",
+        data: updatedMedia,
+      });
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  },
+
+  delete: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const existsMedia = await Multimedia.findById(id);
+
+      if (!existsMedia)
+        return res.status(400).json({
+          message: "There's no media with this id",
+        });
+
+      const deletedCloud = await cloudinary.v2.uploader.destroy(
+        existsMedia.content.public_id
+      );
+
+      const deletedMedia = await Multimedia.findByIdAndDelete(id);
+
+      return res.status(200).json({
+        message: "Media deleted",
+        data: [deletedCloud, deletedMedia],
+      });
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+  },
 };
 
 export default MultimediaController;
