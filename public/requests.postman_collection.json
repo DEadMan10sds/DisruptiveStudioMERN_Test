@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "32dfdfff-be57-40a8-a5b9-0ffa64bf94d9",
+		"name": "Disruptive Studio TT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27354888"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Adan\", \"email\": \"q@q.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/user/create",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create thematic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Sports\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/thematic/create",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"thematic",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Multimedia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "img",
+							"type": "file",
+							"src": "/D:/Projects/Developer/Personal/EDT-Backend-Test/public/54693096.png"
+						},
+						{
+							"key": "data",
+							"value": "{\n    \"thematic\": \"663b0be68b94c5ef6f8e0884\"\n}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/multimedia/create",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"multimedia",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All multimedia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/multimedia/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"multimedia",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete multimedia",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/multimedia/delete/663b14e70a747763eb31431f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"multimedia",
+						"delete",
+						"663b14e70a747763eb31431f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Multimedia",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "img",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "data",
+							"value": "{\"text\": \"a\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/multimedia/update/663bbbde407e6daa0d65dfaa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"multimedia",
+						"update",
+						"663bbbde407e6daa0d65dfaa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get loggeduser",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "xToken",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2JjNDc3ZjAwZjk5ZTU0ZjJiNmZmYiIsImlhdCI6MTcxNTE5NDE2N30.azwkJUli-jg_TyTkLtEdq9kgZQEmD-SCOrSh7DQ5ijQ"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/user/single/663bc477f00f99e54f2b6ffb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"single",
+						"663bc477f00f99e54f2b6ffb"
+					],
+					"query": [
+						{
+							"key": "xToken",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"q@q.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

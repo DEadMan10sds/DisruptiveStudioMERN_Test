@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, Outlet } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const navigation = [
   { name: "Home", to: "/", current: false },
@@ -57,6 +58,14 @@ export function General() {
                           {item.name}
                         </Link>
                       ))}
+                      <a
+                        href="/requests.postman_collection.json"
+                        download="PostmanCollection"
+                      >
+                        <Button className="block rounded px-4 py-2.5 transition duration-200 hover:bg-cyan-900">
+                          Postman Collection
+                        </Button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -142,6 +151,14 @@ export function General() {
                     {item.name}
                   </Link>
                 ))}
+                <a
+                  href="/requests.postman_collection.json"
+                  download="PostmanCollection"
+                >
+                  <Button className="block rounded px-4 py-2.5 transition duration-200 hover:bg-cyan-900">
+                    Postman Collection
+                  </Button>
+                </a>
               </div>
             </Disclosure.Panel>
           </>
