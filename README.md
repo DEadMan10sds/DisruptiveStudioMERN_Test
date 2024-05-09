@@ -8,4 +8,5 @@ The frontend is already compiled and stored in "public" but if you want to run t
  - Open command prompt on frontend folder
  - Run: npm i
  - Run: npm run dev
+
 With this, you'll be able to have an instance of the frontend, this is generally for development
