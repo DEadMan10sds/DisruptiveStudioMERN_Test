@@ -3,10 +3,12 @@ import { Schema, model } from "mongoose";
 const MultimediaScheme = Schema({
   author: {
     type: Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   thematic: {
     type: Schema.Types.ObjectId,
+    ref: "Thematic",
     required: true,
   },
   content: {

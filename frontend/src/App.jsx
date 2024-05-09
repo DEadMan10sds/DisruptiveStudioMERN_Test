@@ -1,41 +1,66 @@
-import { useState } from "react";
-import { Button } from "./components/ui/button";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { General } from "./layouts/GeneralLayout";
+import axios from "axios";
+import { HomePage } from "./pages/home";
+import { Login } from "./pages/login";
+import { Register } from "./pages/register";
+import AuthProvider from "react-auth-kit";
+import createStore from "react-auth-kit/createStore";
+import RequireAuth from "@auth-kit/react-router/RequireAuth";
+
+const store = createStore({
+  authName: "_auth",
+  authType: "localstorage",
+  cookieDomain: window.location.hostname,
+  cookieSecure: window.location.protocol === "https:",
+});
 
 const router = createBrowserRouter([
   {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
     path: "/",
-    element: <General />,
+    element: (
+      <RequireAuth fallbackPath={"/login"}>
+        <General />
+      </RequireAuth>
+    ),
+
     children: [
       {
         index: true,
-        element: <AppComponent />,
+        element: <HomePage />,
+        loader: async () => {
+          return await axios
+            .get("http://localhost:3000/api/multimedia/all")
+            .then((fetchResponse) => fetchResponse)
+            .catch(() => {
+              return { data: { data: [] } };
+            });
+        },
+      },
+      {
+        path: "/thematics",
+        element: <>Thematics</>,
+      },
+      {
+        path: "/multimedia",
+        element: <>Multimedia</>,
       },
     ],
   },
 ]);
 
-function AppComponent() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <div className="card">
-        <Button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
-}
-
-const App = () => <RouterProvider router={router} />;
+const App = () => (
+  <AuthProvider store={store}>
+    <RouterProvider router={router} />
+  </AuthProvider>
+);
 
 export default App;

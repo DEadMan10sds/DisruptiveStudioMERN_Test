@@ -37,7 +37,7 @@ const MultimediaRouter = [
   {
     type: "get",
     route: "/all",
-    middlewares: [validateJWT, validateRoles(["Reader"]), validateFields],
+    middlewares: [validateFields],
     function: MultimediaController.getAll,
   },
   {

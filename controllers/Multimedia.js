@@ -6,7 +6,7 @@ cloudinary.config(process.env.CLOUDINARY_URL);
 const MultimediaController = {
   getAll: async (req, res) => {
     try {
-      const allMultimedia = await Multimedia.find();
+      const allMultimedia = await Multimedia.find().populate("thematic");
 
       if (!allMultimedia.length)
         return res.status(400).json({
